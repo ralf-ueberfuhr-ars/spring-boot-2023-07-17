@@ -1,14 +1,12 @@
 package de.huk.schulung.spring.blog;
 
-import org.springframework.stereotype.Controller;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
 
-//@Controller
-//@ResponseBody
 @RestController
 @RequestMapping("/api/v1/blogposts")
 public class BlogPostRestController {
@@ -17,8 +15,10 @@ public class BlogPostRestController {
 
     {
     posts.add(new BlogPost(1L, "Spring is toll!", "lorem ipsum", LocalDateTime.now()));
-    posts.add(new BlogPost(10L, "Lombok is toll!", "lorem ipsum", LocalDateTime.now()));
+    posts.add(new BlogPost(2L, "Lombok is toll!", "lorem ipsum", LocalDateTime.now()));
     }
+
+    private static long counter = 3L;
 
     @GetMapping
     public Collection<BlogPost> readAllBlogPosts() {
@@ -31,6 +31,14 @@ public class BlogPostRestController {
                 .filter(p -> p.getId().equals(id))
                 .findFirst()
                 .get(); // TODO NoSuchElementException -> 404
+    }
+
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public BlogPost createBlogPost(@RequestBody BlogPost newPost) {
+        newPost.setId(counter++);
+        this.posts.add(newPost);
+        return newPost;
+        // REST: HTTP 201 Created mit Location-Header
     }
 
 }
