@@ -1,7 +1,6 @@
 package de.huk.schulung.spring.blog;
 
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.Size;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
@@ -55,7 +54,7 @@ public class BlogPostRestController {
     @PostMapping(value = "/anlegen", produces = MediaType.TEXT_PLAIN_VALUE)
     public String createBlogPostOhneRest(
             @RequestParam("content") String content,
-            @RequestParam("title") @Size (min=3) String title
+            @RequestParam("title") @Title String title
     ) {
         BlogPost newPost = new BlogPost();
         newPost.setTitle(title);
