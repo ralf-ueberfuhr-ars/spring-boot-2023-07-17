@@ -4,13 +4,14 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.Size;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
 
+@Validated // non-REST: for validating request parameters instead of request bodies
 @RestController
 @RequestMapping("/api/v1/blogposts")
 public class BlogPostRestController {
@@ -54,8 +55,7 @@ public class BlogPostRestController {
     @PostMapping(value = "/anlegen", produces = MediaType.TEXT_PLAIN_VALUE)
     public String createBlogPostOhneRest(
             @RequestParam("content") String content,
-            @Valid @RequestParam("title") @Size (min=3) String title,
-            BindingResult bindingResult
+            @RequestParam("title") @Size (min=3) String title
     ) {
         BlogPost newPost = new BlogPost();
         newPost.setTitle(title);
