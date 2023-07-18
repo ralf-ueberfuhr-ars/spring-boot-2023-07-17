@@ -1,7 +1,10 @@
 package de.huk.schulung.spring.blog;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Size;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -36,7 +39,7 @@ public class BlogPostRestController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public BlogPost createBlogPost(@RequestBody BlogPost newPost) {
+    public BlogPost createBlogPost(@Valid @RequestBody BlogPost newPost) {
         newPost.setId(counter++);
         newPost.setCreationDate(LocalDateTime.now());
         this.posts.add(newPost);
@@ -50,8 +53,9 @@ public class BlogPostRestController {
     // KEIN REST!!!
     @PostMapping(value = "/anlegen", produces = MediaType.TEXT_PLAIN_VALUE)
     public String createBlogPostOhneRest(
-            @RequestParam("title") String title,
-            @RequestParam("content") String content
+            @RequestParam("content") String content,
+            @Valid @RequestParam("title") @Size (min=3) String title,
+            BindingResult bindingResult
     ) {
         BlogPost newPost = new BlogPost();
         newPost.setTitle(title);
