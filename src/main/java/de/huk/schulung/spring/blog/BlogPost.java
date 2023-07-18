@@ -12,10 +12,12 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class BlogPost {
 
+    // serverseitig generiert, nicht Teil des Requests
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;
     private String title;
     private String content;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private LocalDateTime creationDate;
 
 }

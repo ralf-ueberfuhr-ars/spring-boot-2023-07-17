@@ -1,5 +1,6 @@
 package de.huk.schulung.spring.blog;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,11 +35,31 @@ public class BlogPostRestController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.CREATED)
     public BlogPost createBlogPost(@RequestBody BlogPost newPost) {
         newPost.setId(counter++);
+        newPost.setCreationDate(LocalDateTime.now());
         this.posts.add(newPost);
         return newPost;
-        // REST: HTTP 201 Created mit Location-Header
+        // REST: HTTP 201 Created mit Location-Header -> ResponseEntity
+    }
+
+    // DELETE? -> DELETE /api/v1/blogposts/3 -> 204 (leerer Body)
+
+
+    // KEIN REST!!!
+    @PostMapping(value = "/anlegen", produces = MediaType.TEXT_PLAIN_VALUE)
+    public String createBlogPostOhneRest(
+            @RequestParam("title") String title,
+            @RequestParam("content") String content
+    ) {
+        BlogPost newPost = new BlogPost();
+        newPost.setTitle(title);
+        newPost.setContent(content);
+        newPost.setCreationDate(LocalDateTime.now());
+        newPost.setId(counter++);
+        posts.add(newPost);
+        return newPost.toString();
     }
 
 }
