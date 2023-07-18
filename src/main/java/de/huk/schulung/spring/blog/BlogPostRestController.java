@@ -1,13 +1,16 @@
 package de.huk.schulung.spring.blog;
 
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
 
+@Validated // non-REST: for validating request parameters instead of request bodies
 @RestController
 @RequestMapping("/api/v1/blogposts")
 public class BlogPostRestController {
@@ -36,7 +39,7 @@ public class BlogPostRestController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public BlogPost createBlogPost(@RequestBody BlogPost newPost) {
+    public BlogPost createBlogPost(@Valid @RequestBody BlogPost newPost) {
         newPost.setId(counter++);
         newPost.setCreationDate(LocalDateTime.now());
         this.posts.add(newPost);
@@ -50,8 +53,8 @@ public class BlogPostRestController {
     // KEIN REST!!!
     @PostMapping(value = "/anlegen", produces = MediaType.TEXT_PLAIN_VALUE)
     public String createBlogPostOhneRest(
-            @RequestParam("title") String title,
-            @RequestParam("content") String content
+            @RequestParam("content") String content,
+            @RequestParam("title") @Title String title
     ) {
         BlogPost newPost = new BlogPost();
         newPost.setTitle(title);
