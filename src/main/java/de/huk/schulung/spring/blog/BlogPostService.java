@@ -1,12 +1,15 @@
 package de.huk.schulung.spring.blog;
 
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
 
+@Validated
 @Service
 public class BlogPostService {
 
@@ -29,7 +32,7 @@ public class BlogPostService {
                 .findFirst();
     }
 
-    public void createPost(BlogPost newPost) {
+    public void createPost(@Valid BlogPost newPost) {
         newPost.setId(counter++);
         newPost.setCreationDate(LocalDateTime.now());
         this.posts.add(newPost);
