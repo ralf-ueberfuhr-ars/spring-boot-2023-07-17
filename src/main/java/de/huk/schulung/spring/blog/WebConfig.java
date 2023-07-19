@@ -38,5 +38,10 @@ public class WebConfig {
         };
     }
 
+    @Bean
+    public BlogPost webPost() {
+        return new BlogPost(null, "HTTP-Wissen wird wichtiger!", "Lorem ipsum", null);
+    }
+
 
 }
