@@ -1,6 +1,7 @@
 package de.huk.schulung.spring.blog;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
@@ -8,6 +9,8 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
+// Start mit "java -jar my-app.jar -Dspring.profiles.active=dev"
+@Profile("dev")
 @RequiredArgsConstructor
 public class BlogPostInitializer {
 
