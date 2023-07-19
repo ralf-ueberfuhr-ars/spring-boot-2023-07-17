@@ -15,12 +15,8 @@ public class BlogPostService {
 
     private final Collection<BlogPost> posts = new HashSet<>();
 
-    {
-        posts.add(new BlogPost(1L, "Spring is toll!", "lorem ipsum", LocalDateTime.now()));
-        posts.add(new BlogPost(2L, "Lombok is toll!", "lorem ipsum", LocalDateTime.now()));
-    }
 
-    private static long counter = 3L;
+    private static long counter = 1L;
 
     public Collection<BlogPost> getPosts() {
         return posts;
