@@ -13,10 +13,8 @@ import java.util.Optional;
 
 @Validated
 @Service
-@RequiredArgsConstructor
 public class BlogPostService {
 
-    private final ApplicationEventPublisher publisher;
     private final Collection<BlogPost> posts = new HashSet<>();
 
 
@@ -32,11 +30,11 @@ public class BlogPostService {
                 .findFirst();
     }
 
+    @PublishEvent(BlogPostCreatedEvent.class)
     public void createPost(@Valid BlogPost newPost) {
         newPost.setId(counter++);
         newPost.setCreationDate(LocalDateTime.now());
         this.posts.add(newPost);
-        publisher.publishEvent(new BlogPostCreatedEvent(newPost));
     }
 
     public void deletePost(long id) {
