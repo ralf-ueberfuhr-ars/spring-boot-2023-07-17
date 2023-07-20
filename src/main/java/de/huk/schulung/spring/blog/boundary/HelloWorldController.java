@@ -1,4 +1,4 @@
-package de.huk.schulung.spring.blog;
+package de.huk.schulung.spring.blog.boundary;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;

@@ -1,4 +1,4 @@
-package de.huk.schulung.spring.blog;
+package de.huk.schulung.spring.blog.domain;
 
 import lombok.RequiredArgsConstructor;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -17,7 +17,7 @@ public class PublishEventAspect {
     private final ApplicationEventPublisher eventPublisher;
 
     // we can annotate the method directly
-    @Around("@annotation(PublishEvent)")
+    @Around("@annotation(de.huk.schulung.spring.blog.domain.PublishEvent)")
     public Object publishEventForAnnotatedMethod(ProceedingJoinPoint jp) throws Throwable {
         // find annotation method (Reflection)
         if (jp.getSignature() instanceof MethodSignature ms) {

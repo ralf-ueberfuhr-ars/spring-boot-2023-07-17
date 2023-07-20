@@ -1,5 +1,8 @@
-package de.huk.schulung.spring.blog;
+package de.huk.schulung.spring.blog.boundary;
 
+import de.huk.schulung.spring.blog.domain.BlogPost;
+import de.huk.schulung.spring.blog.domain.BlogPostService;
+import de.huk.schulung.spring.blog.domain.Title;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
