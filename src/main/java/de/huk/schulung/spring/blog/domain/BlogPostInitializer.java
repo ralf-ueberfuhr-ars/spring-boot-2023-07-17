@@ -1,4 +1,4 @@
-package de.huk.schulung.spring.blog;
+package de.huk.schulung.spring.blog.domain;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Profile;

@@ -1,5 +1,6 @@
-package de.huk.schulung.spring.blog;
+package de.huk.schulung.spring.blog.boundary;
 
+import de.huk.schulung.spring.blog.domain.BlogPost;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;

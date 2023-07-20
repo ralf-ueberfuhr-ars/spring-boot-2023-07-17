@@ -1,4 +1,4 @@
-package de.huk.schulung.spring.blog;
+package de.huk.schulung.spring.blog.boundary;
 
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;

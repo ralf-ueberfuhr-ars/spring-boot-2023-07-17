@@ -1,5 +1,6 @@
-package de.huk.schulung.spring.blog;
+package de.huk.schulung.spring.blog.boundary;
 
+import de.huk.schulung.spring.blog.domain.BlogPostService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;

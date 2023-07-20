@@ -1,4 +1,4 @@
-package de.huk.schulung.spring.blog;
+package de.huk.schulung.spring.blog.domain;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
