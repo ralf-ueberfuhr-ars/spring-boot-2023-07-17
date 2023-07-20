@@ -1,10 +1,8 @@
 package de.huk.schulung.spring.blog;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.context.ApplicationEventPublisher;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
 
 /*
  * Testfall: wenn ein BlogPost angelegt wird, wird das creationDate gesetzt
@@ -12,9 +10,7 @@ import static org.mockito.Mockito.mock;
 
 class BlogPostServiceTest {
 
-    BlogPostService service = new BlogPostService(
-            mock(ApplicationEventPublisher.class)
-    );
+    BlogPostService service = new BlogPostService();
 
     @Test
     void shouldSetCreationDateOnCreation() {
