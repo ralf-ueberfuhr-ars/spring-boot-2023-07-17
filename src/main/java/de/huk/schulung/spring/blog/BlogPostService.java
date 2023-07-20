@@ -1,6 +1,8 @@
 package de.huk.schulung.spring.blog;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -11,8 +13,10 @@ import java.util.Optional;
 
 @Validated
 @Service
+@RequiredArgsConstructor
 public class BlogPostService {
 
+    private final ApplicationEventPublisher publisher;
     private final Collection<BlogPost> posts = new HashSet<>();
 
 
@@ -32,6 +36,7 @@ public class BlogPostService {
         newPost.setId(counter++);
         newPost.setCreationDate(LocalDateTime.now());
         this.posts.add(newPost);
+        publisher.publishEvent(new BlogPostCreatedEvent(newPost));
     }
 
     public void deletePost(long id) {
