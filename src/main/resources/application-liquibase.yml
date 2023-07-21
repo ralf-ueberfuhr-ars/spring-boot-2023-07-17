@@ -1,0 +1,8 @@
+spring:
+  liquibase:
+    enabled: true
+  datasource:
+    url: jdbc:h2:./.local-db/data-liquibase
+  jpa:
+    hibernate:
+      ddl-auto: validate
