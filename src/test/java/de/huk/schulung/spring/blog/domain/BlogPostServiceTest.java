@@ -10,7 +10,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class BlogPostServiceTest {
 
-    BlogPostService service = new BlogPostService();
+    BlogPostService service = new BlogPostService(
+            new BlogPostSinkInMemoryImpl()
+    );
 
     @Test
     void shouldSetCreationDateOnCreation() {
